@@ -15,9 +15,11 @@ import {
 } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import { Link } from "expo-router";
+import useAuth from "@/hooks/useAuth";
 
 const FormSignIn = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const { signIn, loading } = useAuth();
   const {
     control,
     handleSubmit,
@@ -26,9 +28,9 @@ const FormSignIn = () => {
     resolver: zodResolver(formSignInSchema),
   });
 
-  const onSubmit: SubmitHandler<SignInSchema> = (data) => {
+  const onSubmit: SubmitHandler<SignInSchema> = async (data) => {
     console.log(data);
-    // Handle sign-in logic here
+    await signIn(data.email, data.password);
   };
 
   const togglePasswordVisibility = () => {
@@ -125,6 +127,9 @@ const FormSignIn = () => {
               rounded={"lg"}
               bg={"primary"}
               onPress={handleSubmit(onSubmit)}
+              isLoading={loading}
+              isLoadingText="Processing..."
+              disabled={loading}
             >
               <Text color={"white"} fontWeight={"600"}>
                 Sign In

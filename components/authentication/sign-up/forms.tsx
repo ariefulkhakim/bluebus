@@ -15,8 +15,11 @@ import {
 } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import { Link } from "expo-router";
+import useAuth from "@/hooks/useAuth";
+import { Alert } from "react-native";
 
 const FormSignUp = () => {
+  const { signUp, loading } = useAuth();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const {
     control,
@@ -26,9 +29,8 @@ const FormSignUp = () => {
     resolver: zodResolver(formSignUpSchema),
   });
 
-  const onSubmit: SubmitHandler<SignInSchema> = (data) => {
-    console.log(data);
-    // Handle sign-in logic here
+  const onSubmit: SubmitHandler<SignInSchema> = async (data) => {
+    await signUp(data.name, data.phone_number, data.email, data.password);
   };
 
   const togglePasswordVisibility = () => {
@@ -174,6 +176,9 @@ const FormSignUp = () => {
               rounded={"lg"}
               bg={"primary"}
               onPress={handleSubmit(onSubmit)}
+              isLoading={loading}
+              isLoadingText="Processing..."
+              disabled={loading}
             >
               <Text color={"white"} fontWeight={"600"}>
                 Sign Up

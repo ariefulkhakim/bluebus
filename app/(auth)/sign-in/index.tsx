@@ -10,7 +10,12 @@ import {
   Heading,
 } from "native-base";
 import React from "react";
-import { Keyboard, Platform, TouchableWithoutFeedback } from "react-native";
+import {
+  Keyboard,
+  Platform,
+  StatusBar,
+  TouchableWithoutFeedback,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import FormSignIn from "@/components/authentication/sign-in/forms";
 
@@ -18,12 +23,6 @@ const SignIn = () => {
   const route = useRouter();
   return (
     <>
-      <Stack.Screen
-        options={{
-          headerShown: false,
-          statusBarColor: "#333",
-        }}
-      />
       <KeyboardAvoidingView
         h={{
           base: "100%",
@@ -36,7 +35,7 @@ const SignIn = () => {
             showsVerticalScrollIndicator={false}
             flex={1}
             px={7}
-            py={6}
+            py={12}
             bg={"text"}
           >
             <VStack space={8}>

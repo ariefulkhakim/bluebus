@@ -17,12 +17,6 @@ const SignUp = () => {
   const route = useRouter();
   return (
     <>
-      <Stack.Screen
-        options={{
-          headerShown: false,
-          statusBarColor: "#333",
-        }}
-      />
       <KeyboardAvoidingView
         h={{
           base: "100%",
@@ -35,7 +29,7 @@ const SignUp = () => {
             showsVerticalScrollIndicator={false}
             flex={1}
             px={7}
-            py={6}
+            py={12}
             bg={"text"}
           >
             <VStack space={8}>

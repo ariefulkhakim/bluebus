@@ -8,7 +8,8 @@ import {
 import React from "react";
 import { Stack } from "expo-router";
 import { Keyboard, Platform, TouchableWithoutFeedback } from "react-native";
-import HeaderHome from "./components/Header";
+import HeaderHome from "@/components/page/homepage/Header";
+import FormBookingScreen from "@/components/page/homepage/Form";
 
 const HomeScreen = () => {
   return (
@@ -24,11 +25,12 @@ const HomeScreen = () => {
           <ScrollView
             showsVerticalScrollIndicator={false}
             flex={1}
-            px={7}
-            py={8}
+            px={0}
+            py={0}
             bg={"text"}
           >
             <HeaderHome />
+            <FormBookingScreen />
           </ScrollView>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
